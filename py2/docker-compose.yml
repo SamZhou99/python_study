@@ -1,0 +1,8 @@
+#不知道为什么docker-compose不能成功
+#只有执行下面命令行才可以
+#docker run -it -p 5001:5001 -v ~/Desktop/www/python/py2:/www --name py2 python:2.7.15-stretch /bin/bash
+version: '2'
+services:
+  python:
+    image: python:2.7.15-stretch
+    container_name: py2

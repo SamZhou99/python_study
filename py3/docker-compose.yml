@@ -1,0 +1,17 @@
+#不知道为什么docker-compose不能成功
+#只有执行下面命令行才可以
+#docker run -it -p 5002:5002 -v ~/Desktop/www/python/py3:/www --name py3 python:3.7.1-stretch /bin/bash
+version: '2'
+services:
+  python:
+    image: python:3.7.1-stretch
+    container_name: python3
+    restart: unless-stopped
+    dns: 8.8.8.8
+
+    volumes:
+      #指到根目录
+      - ~/Desktop/www/python/py3:/www
+
+    ports:
+      - "5002:5002"
