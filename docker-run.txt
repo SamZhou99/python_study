@@ -1,0 +1,2 @@
+docker run -it -p 5001:5001 -v c:/www/python/py2:/www --name py2 python:2.7.15-stretch /bin/bash
+docker run -it -p 5002:5002 -v c:/www/python/py3:/www --name py3 python:3.7.1-stretch /bin/bash
