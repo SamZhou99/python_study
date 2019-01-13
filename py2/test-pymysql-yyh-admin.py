@@ -40,4 +40,12 @@ def getAdminData():
         execute(db_yyh, "INSERT INTO administrator () VALUE()")
 
 
-getAdminData()
+def test_connect():
+    execute(db_test, "SELECT 1+1")
+    execute(db_yyh, "SELECT 1+1")
+
+# getAdminData()
+
+test_connect()
+
+
