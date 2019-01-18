@@ -154,7 +154,7 @@ def test_connect():
 # test_connect()
 getAdministratorData()
 getPermissionRoleData()
-getPermissionsData()
+# getPermissionsData()
 getRoleUserData()
 getRolesData()
 

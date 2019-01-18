@@ -1,5 +1,6 @@
 # encoding:utf-8
 import math
+import re
 
 
 def cost01(duration):
@@ -11,8 +12,8 @@ def cost01(duration):
     return (resTime, resTime * price)
 
 
-duration = int(raw_input('输入时长(秒):\n'))
+duration = int(re.sub('\D', '', raw_input('输入时长(秒):\n')))
 
 r, p = cost01(duration)
 
-print(str(r) + 'm', str(p) + 'rmb')
+print(str(duration)+'m', str(r) + 'm', str(p) + 'rmb')
