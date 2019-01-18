@@ -1,0 +1,7 @@
+安裝失敗時，安裝C++編譯環境，Win10 32位 PY2.7
+
+from Crypto.Cipher import AES
+
+Thank you for downloading Microsoft Visual C++ Compiler for Python 2.7
+
+https://www.microsoft.com/en-us/download/confirmation.aspx?id=44266
