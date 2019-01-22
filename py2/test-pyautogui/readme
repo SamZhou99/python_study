@@ -1,0 +1,48 @@
+Linux系统（Debian系列）：
+
+
+$ sudo apt-get install python3-pip
+$ sudo pip3 install python3-xlib
+$ sudo apt-get install scrot
+$ sudo apt-get install python3-tk
+$ and sudo apt-get install python3-dev
+
+$ sudo apt-get install python3-pip
+$ sudo pip3 install python3-xlib
+$ sudo apt-get install scrot
+$ sudo apt-get install python3-tk
+$ and sudo apt-get install python3-dev
+Scrot是pyautogui使用的截图工具。
+
+Mac OS X：
+
+
+$ sudo pip3 install pyobjc-framework-Quartz
+$ sudo pip3 install pyobjc-core
+$ sudo pip3 install pyobjc
+$ sudo pip3 install pillow
+
+$ sudo pip3 install pyobjc-framework-Quartz
+$ sudo pip3 install pyobjc-core
+$ sudo pip3 install pyobjc
+$ sudo pip3 install pillow
+OS X上的Python3可以通过brewhome或port安装。
+
+Windows系统不用安装依赖。
+
+安装完依赖之后，安装pyautogui：
+
+
+$ sudo pip3 install pyautogui
+# Windows
+pip install pyautogui
+
+$ sudo pip3 install pyautogui
+# Windows
+pip install pyautogui
+导入模块测试：
+
+
+import pyautogui
+
+import pyautogui
