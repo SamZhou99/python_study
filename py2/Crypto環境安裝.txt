@@ -1,4 +1,4 @@
-°²ÑbÊ§”¡•r£¬°²ÑbC++¾×g­h¾³£¬Win10 32Î» PY2.7
+ï»¿å®‰è£å¤±æ•—æ™‚ï¼Œå®‰è£C++ç·¨è­¯ç’°å¢ƒï¼ŒWin10 32ä½ PY2.7
 
 
 pip install pycrypto
@@ -9,3 +9,13 @@ from Crypto.Cipher import AES
 Thank you for downloading Microsoft Visual C++ Compiler for Python 2.7
 
 https://www.microsoft.com/en-us/download/confirmation.aspx?id=44266
+
+
+
+
+
+# å®‰è£ Python 2 çš„ requests æ¨¡çµ„
+pip install requests
+
+# å®‰è£ Python 3 çš„ requests æ¨¡çµ„
+pip3 install requests2

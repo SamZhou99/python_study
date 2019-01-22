@@ -6,8 +6,8 @@ import pymysql
 import datetime
 import math
 import time
-import base64
-from Crypto.Cipher import AES
+import requests
+import AES_ECB
 
 # HOST = "172.21.0.3"
 HOST = "127.0.0.1"
@@ -16,9 +16,9 @@ USER = "root"
 PASS = "root"
 DBNAME1 = "yyh_central_telephone_member"
 DBNAME2 = "yyh_central"
-KEY = 'FZgC3e90tWjQczjW'
 
-BS = AES.block_size
+
+
 pad = lambda s: s + (BS - len(s) % BS) * chr(BS - len(s) % BS)
 unpad = lambda s: s[0:-ord(s[-1])]
 
@@ -68,19 +68,32 @@ def getTelephoneMember(pageIndex, pageLimit):
     result = select(db_test1, sql)
     list = []
     for rs in result:
-        d = (rs[0], rs[1])
+        phone = AES_ECB.decryptAES(rs[0])
+        d = (rs[0], phone, rs[1])
         list.append(d)
         # print(d)
     return list
 
 
-def savePhoneMember(listData):
+def saveTelephoneMember(listData):
     try:
         executemany(
-            db_test1, '''INSERT INTO `phone_member` (`phone`,`member_id`) VALUE(%s,%s)''', listData)
+            db_test1, '''INSERT INTO `phone_member` (`phone`,`telephone`,`member_id`) VALUE(%s,%s,%s)''', listData)
     except Exception as e:
         raise e
     return True
+
+
+def getPhoneMember(pageIndex, pageLimit):
+    # total 47556
+    sql = "SELECT * FROM phone_member LIMIT " + \
+        str(pageIndex) + "," + str(pageLimit)
+    result = select(db_test1, sql)
+    s = ''
+    for rs in result:
+        s += str(rs[3]) + '_' + str(rs[2]) + ','
+    # print(rs)
+    return s
 
 
 def dbClose():
@@ -96,35 +109,53 @@ def test_connect():
     # print(rs2)
 
 
-def test_base64():
-    s = 'ABC'
-    e = base64.b64encode(s)
-    d = base64.b64decode(e)
-    print(s, e, d)
+def test_import():
+    execute(db_test1, "TRUNCATE TABLE `phone_member`")
+    total = 47556
+    pageIndex = 0
+    pageLimit = 100
+    pageTotal = int(math.ceil(total / pageLimit))
+    for x in range(pageTotal):
+        listData = getTelephoneMember(pageIndex, pageLimit)
+        print(pageIndex, total, getNumFormat(pageIndex / total * 100) + '%')
+        saveTelephoneMember(listData)
+        pageIndex += pageLimit
+        time.sleep(0.05)
 
 
-def encryptAES(text):
-    cipher = AES.new(KEY, AES.MODE_ECB)
-    encrypted = cipher.encrypt(pad(text)).encode('hex')
-    print(encrypted)
+def test_export():
+    total = 47556
+    pageIndex = 0
+    pageLimit = 100
+    pageTotal = int(math.ceil(total / pageLimit))
+
+    for x in range(pageTotal):
+        strData = getPhoneMember(pageIndex, pageLimit)
+        time.sleep(0.05)
+
+        test_request(strData)
+        time.sleep(0.2)
+
+        print(pageIndex, total, getNumFormat(pageIndex / total * 100) + '%')
+        pageIndex += pageLimit
+
+
+def test_request(strData):
+    myData = {'data': strData}
+    url = 'http://ininder.laravel.admin/api/import-member-tel'
+    r = requests.post(url, data=myData)
+    if r.status_code == requests.codes.ok:
+        print('==========================================================')
+        print(r.text)
+        return True
+    print('Abnormity：', r.status_code)
+
 
 test_connect()
 
-execute(db_test1, "TRUNCATE TABLE `phone_member`")
 
-total = 47556
-pageIndex = 0
-pageLimit = 100
-pageTotal = int(math.ceil(total / pageLimit))
-
-test_base64()
-encryptAES('123')
-# for x in range(pageTotal):
-#     listData = getTelephoneMember(pageIndex, pageLimit)
-#     print(pageIndex, total, getNumFormat(pageIndex/total*100)+'%')
-#     savePhoneMember(listData)
-#     pageIndex += pageLimit
-#     time.sleep(0.03)
+# test_import()
+test_export()
 
 
 dbClose()
