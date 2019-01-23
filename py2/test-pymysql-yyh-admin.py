@@ -7,7 +7,7 @@ HOST = "127.0.0.1"
 PORT = 3306
 USER = "root"
 PASS = "root"
-DBNAME1 = "test"
+DBNAME1 = "yyh_central_old"
 DBNAME2 = "yyh_central"
 
 
@@ -146,18 +146,19 @@ def getRolesData():
 
 def test_connect():
     rs1 = select(db_test1, "SELECT * FROM administrator LIMIT 1")
-    print(rs1)
+    # print(rs1)
     rs2 = select(db_test2, "SELECT * FROM administrator LIMIT 1")
-    print(rs2)
+    # print(rs2)
+    return True
 
 
-# test_connect()
-getAdministratorData()
-getPermissionRoleData()
-# getPermissionsData()
-getRoleUserData()
-getRolesData()
-
-# 关闭数据库连接
-db_test1.close()
-db_test2.close()
+if test_connect():
+    getAdministratorData()
+    getPermissionRoleData()
+    # getPermissionsData()
+    getRoleUserData()
+    getRolesData()
+    
+    # 关闭数据库连接
+    db_test1.close()
+    db_test2.close()
