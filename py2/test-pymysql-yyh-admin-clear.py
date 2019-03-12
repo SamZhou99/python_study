@@ -60,6 +60,7 @@ def clearData():
     execute(db_test2, "TRUNCATE TABLE `tm_task_telephone`")
     execute(db_test2, "TRUNCATE TABLE `tm_telephone`")
     execute(db_test2, "TRUNCATE TABLE `tm_telephone_admin_relation`")
+    execute(db_test2, "TRUNCATE TABLE `tm_telephone_member_relation`")
     execute(db_test2, "TRUNCATE TABLE `tm_telephone_other_info`")
     execute(db_test2, "TRUNCATE TABLE `tm_telephone_upload_log`")
     execute(db_test2, "TRUNCATE TABLE `tm_voip_log`")
