@@ -7,7 +7,7 @@ HOST = "127.0.0.1"
 PORT = 3306
 USER = "root"
 PASS = "root"
-DBNAME1 = "yyh_central_old"
+DBNAME1 = "yyh_central_telephone_member"
 DBNAME2 = "yyh_central"
 
 
