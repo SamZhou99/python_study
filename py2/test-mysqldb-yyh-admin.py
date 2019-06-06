@@ -3,6 +3,7 @@
 
 from __future__ import division
 import MySQLdb
+import MySQLdb.cursors
 import datetime
 
 HOST = "172.21.0.3"
