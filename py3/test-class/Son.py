@@ -5,10 +5,10 @@ class Son(Father):
 
     def __init__(self, name):
         super(Son, self).__init__('Lven')
-        self.name2 = name
+        self.sonName = name
 
     def getParentName(self):
-    	return super(Son, self).getName()
+    	return super(Son, self).getFatherName()
 
     def getName(self):
-        return 'Son ' + self.name2
+        return '儿子 ' + self.sonName

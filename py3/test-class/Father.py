@@ -1,8 +1,8 @@
 class Father(object):
 
     def __init__(self, name):
-        self.name = name
+        self.fatherName = name
         # print("Father name: %s" % (self.name))
 
-    def getName(self):
-        return 'Father ' + self.name
+    def getFatherName(self):
+        return '爸爸 ' + self.fatherName
