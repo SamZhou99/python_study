@@ -21,8 +21,8 @@ for i in range(1, max_num):
     total += 1
     if x+y == input_number:
         right += 1
-        print('√    👍💯🥳\n')
+        print('√    👍\n')
     else:
         error += 1
-        print('×    👎❌😰\n')
+        print('×    👎\n')
     print_statistical()
