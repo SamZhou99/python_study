@@ -1,4 +1,6 @@
-from urllib2 import urlopen
+# urllib 通过这个安装 pip install urllib5
+import urllib.request
+import urllib.parse
 import socket
 import uuid
 import struct
@@ -17,10 +19,13 @@ def get_LAN_IP():
     return ip
 
 
-# 外網IP
+# # 外網IP
+# def get_Internet_IP():
+#     my_ip = urlopen('http://ifconfig.me/ip').read()
+#     return my_ip
+
 def get_Internet_IP():
-    my_ip = urlopen('http://ifconfig.me/ip').read()
-    return my_ip
+    return urllib.request.urlopen('http://ifconfig.me/ip').read()
 
 
 # 設備UUID：1c:1b:0d:aa:15:b2
@@ -39,7 +44,7 @@ def get_ipconfig():
     mac = None
     if sys.platform == "win32":
         for line in os.popen("ipconfig /all"):
-            print line
+            print(line)
             if line.lstrip().startswith("Physical Address"):
                 mac = line.split(":")[1].strip().replace("-", ":")
                 break
@@ -51,7 +56,7 @@ def get_ipconfig():
     return mac
 
 
-print get_LAN_IP()
-print get_Internet_IP()
-print get_UUID()
-print get_ipconfig()
+print('get_UUID', get_UUID())
+print('get_ipconfig', get_ipconfig())
+print('get_LAN_IP', get_LAN_IP())
+print('get_Internet_IP', get_Internet_IP())
