@@ -12,7 +12,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html', title="request.headers.get('User-Agent')")
+    # print('娃哈哈', request.headers)
+    return render_template('index.html', title=request.headers.get('User-Agent'), r=random.random())
 
 
 @app.route('/user/<name>')
@@ -26,11 +27,12 @@ def user(name):
 def cookie(act):
     if act == 'set':
         name = 'sam_'+str(random.random())
-        response = make_response(render_template('index.html', title='set cookie name '+name))
+        response = make_response(render_template(
+            'index.html', title='set cookie name '+name))
         response.set_cookie('name', name)
         return response
     if act == 'get':
-        name=request.cookies.get('name')
+        name = request.cookies.get('name')
         if not name:
             name = 'null'
         return render_template('index.html', title='cookie name '+name)

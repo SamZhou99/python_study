@@ -13,16 +13,36 @@ def print_statistical():
     print('')
 
 
+def get_input_num():
+    return int("".join(list(filter(str.isdigit, input("等于？")))))
+
+
 for i in range(1, max_num):
+    r = random.randint(0, 1)
     x = random.randint(1, 9)
-    y = random.randint(1, 9)
-    print('{} + {} = ?\t'.format(x, y))
-    input_number = int("".join(list(filter(str.isdigit, input("等于？")))))
+    y = random.randint(1, 19)
+
+    if r == 1:
+        print('{} + {} = ?\t'.format(x, y))
+    else:
+        x = max(x, y)
+        y = min(x, y)
+        print('{} - {} = ?\t'.format(x, y))
+
+    input_number = get_input_num()
     total += 1
-    if x+y == input_number:
+
+    if r == 1 and x+y == input_number:
+        right += 1
+        print('√    👍👏👨‍✈️  你好棒！\n')
+    elif r == 0 and x-y == input_number:
         right += 1
         print('√    👍👏👨‍✈️  你好棒！\n')
     else:
         error += 1
-        print('×    👎💩😭  傻瓜!\n')
+        if r == 1:
+            d = x+y
+        else:
+            d = x-y
+        print('×    👎💩😭  傻瓜! 应该等于={}\n'.format(d))
     print_statistical()
