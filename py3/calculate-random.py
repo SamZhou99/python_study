@@ -30,7 +30,14 @@ def print_error(resultNum):
 
 
 def kb_input_to_int():
-    return int("".join(list(filter(str.isdigit, input("等于？")))))
+    ii = ''
+    for i in range(3):
+        if len(ii) > 0:
+            break
+        ii = input("等于？")
+
+    print('====>', ii)
+    return int("".join(list(filter(str.isdigit, ii))))
 
 # 加法
 
@@ -59,8 +66,10 @@ for i in range(1, max_num):
     if r == 1:
         print('{} + {} = ?\t'.format(x, y))
     else:
-        x = max(x, y)
-        y = min(x, y)
+        x1 = max(x, y)
+        y1 = min(x, y)
+        x = x1
+        y = y1
         print('{} - {} = ?\t'.format(x, y))
 
     input_number = kb_input_to_int()
