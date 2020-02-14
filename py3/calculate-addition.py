@@ -1,3 +1,5 @@
+import random
+
 max_num = 10
 total = 0
 right = 0
@@ -12,10 +14,12 @@ def print_statistical():
 
 for x in range(1, max_num):
     for y in range(x, max_num):
-        print('{} + {} = ?\t'.format(x, y))
+        i = random.randint(5, 19)
+        j = random.randint(1, 19)
+        print('{} + {} = ?\t'.format(i, j))
         input_number = int("".join(list(filter(str.isdigit, input("等于？")))))
         total += 1
-        if x+y == input_number:
+        if i+j == input_number:
             right += 1
             print('√    👍\n')
         else:
