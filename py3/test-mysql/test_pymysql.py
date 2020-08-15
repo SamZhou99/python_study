@@ -1,13 +1,18 @@
+from __future__ import division
+import datetime
 import pymysql
 import time
 
-mysql_conn = pymysql.connect(
-    host='127.0.0.1',
-    port=3306,
-    user='root',
-    password='root',
-    db='test'
-)
+config = {
+    'host': '127.0.0.1',
+    'port': 3306,
+    'user': 'root',
+    'password': 'root',
+    'db': 'lajiao_video',
+    'charset': 'utf8mb4',
+    'cursorclass': pymysql.cursors.DictCursor,
+}
+mysql_conn = pymysql.connect(**config)
 
 
 def close():
@@ -24,16 +29,16 @@ def insert(title, age, timedate):
 
 
 def select():
-    sql = "SELECT * FROM content ORDER BY id DESC LIMIT {0}".format(
+    sql = "SELECT * FROM articles ORDER BY id DESC LIMIT {0}".format(
         '10')
     print(sql)
     with mysql_conn.cursor() as cursor:
         cursor.execute(sql)
         result_list = cursor.fetchall()
-        for result_one in result_list:
-            print(result_one)
+        for item in result_list:
+            print(item['id'], item['video'])
 
 
-insert('标题', 9, time.strftime('%Y-%m-%d %M:%I:%S', time.localtime()))
+# insert('标题', 9, time.strftime('%Y-%m-%d %M:%I:%S', time.localtime()))
 select()
 close()
