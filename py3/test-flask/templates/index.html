@@ -3,13 +3,26 @@
 
 <head>
 	<title>{{title}}</title>
+	<style>
+		li {
+			float: left;
+			margin-right: 2rem;
+			padding: 1rem;
+		}
+	</style>
 </head>
 
 <body>
 
-	<h1>{{title}}</h1>
+	<h4>{{title}}</h4>
 
 	<h4>随机数：{{r}}</h4>
+
+	<ul>
+		{% for index in indexs %}
+		<li> {{ index }} </li>
+		{% endfor %}
+	</ul>
 
 </body>
 
