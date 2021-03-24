@@ -5,12 +5,18 @@ import data
 
 POST_URL = 'http://www.lajiao999.com/admin/article'
 # SITE_URL = 'https://www.caecf5ca04934df3.xyz'
-SITE_URL = 'https://cl260d.com'
+# SITE_URL = 'https://cl260d.com'
+SITE_URL = 'https://cl34ce.com'
 SITE_CODE = 'caoliu1024'
 LOGIN_URL = SITE_URL + '/login.php'
 THREAD_URL = SITE_URL + '/thread.php?fid={fid}&page={page}'
 DATA_FILE_NAME = 'data.txt'
 THREAD_LIST = [
+    {
+        'fid': 33,
+        'name': 'VIP影视区',
+        'page': 5
+    },
     {
         'fid': 6,
         'name': '国产原创',
@@ -45,7 +51,7 @@ chrome_options.set_headless()
 # 不加载 IMG 和 JS, CSS
 chrome_options.add_experimental_option('prefs', {'profile.default_content_setting_values': {'images': 2, 'javascript': 2, 'permissions.default.stylesheet': 2}})
 driver = webdriver.Chrome(chrome_options=chrome_options)
-driver.set_page_load_timeout(5)
+driver.set_page_load_timeout(30)
 
 # driver.manage().timeouts().setScriptTimeout(3,TimeUnit.SECONDS);
 
@@ -149,23 +155,25 @@ def post_data(item):
 
 # 开始获取
 def start():
-    page_max = THREAD_LIST[thread_index]['page']
-    for page in range(page_max):
-        threadList = getThreadList(page_max - page)
-        i = 0
-        for item in threadList:
-            i = i + 1
-            url = item['href']
-            print('开始第 {} 条数据'.format(i))
-            try:
-                item['playUrl'], item['imgTxt'] = getContentPage(url)
-                item['m3u8'] = getPlayPage(item['playUrl'])
-                post_data(item)
-            except:
-                print('❌打开页面异常 URL：{}'.format(url))
-                print('解析异常')
+    for index in range(len(THREAD_LIST)):
+        print('{}, {}, {}'.format(index, THREAD_LIST[index]['fid'], THREAD_LIST[index]['name']))
+        page_max = THREAD_LIST[index]['page']
+        for page in range(page_max):
+            threadList = getThreadList(page_max - page)
+            i = 0
+            for item in threadList:
+                i = i + 1
+                url = item['href']
+                print('开始第 {} 条数据'.format(i))
+                try:
+                    item['playUrl'], item['imgTxt'] = getContentPage(url)
+                    item['m3u8'] = getPlayPage(item['playUrl'])
+                    post_data(item)
+                except:
+                    print('❌打开页面异常 URL：{}'.format(url))
+                    print('解析异常')
+                # break
             # break
-        # break
 
 
 # 初始化
