@@ -10,17 +10,18 @@ import math
 app = Flask(__name__)
 
 
+def rand():
+    return math.ceil(random.random() * 100)
+
+
 @app.route('/')
 def index():
     # print('娃哈哈', request.headers)
     indexs = []
-    r = math.ceil(random.random() * 10000)
-    for i in range(0, r):
-        indexs.append(i)
-    return render_template('index.html',
-                           title=request.headers.get('User-Agent'),
-                           r=random.random(),
-                           indexs=indexs)
+    r = rand()
+    for _ in range(0, r):
+        indexs.append(rand())
+    return render_template('index.html', title=request.headers.get('User-Agent'), r=rand(), indexs=indexs)
 
 
 @app.route('/user/<name>')
@@ -34,8 +35,7 @@ def user(name):
 def cookie(act):
     if act == 'set':
         name = 'sam_' + str(random.random())
-        response = make_response(
-            render_template('index.html', title='set cookie name ' + name))
+        response = make_response(render_template('index.html', title='set cookie name ' + name))
         response.set_cookie('name', name)
         return response
     if act == 'get':
