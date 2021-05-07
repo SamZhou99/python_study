@@ -3,10 +3,12 @@ import time
 import requests
 import data
 
-POST_URL = 'http://www.lajiao999.com/admin/article'
+# POST_URL = 'http://www.lajiao999.com/admin/article'
+POST_URL = 'http://127.0.0.1:3000/admin/article'
 # SITE_URL = 'https://www.caecf5ca04934df3.xyz'
 # SITE_URL = 'https://cl260d.com'
-SITE_URL = 'https://cl34ce.com'
+# SITE_URL = 'https://cl34ce.com'
+SITE_URL = 'https://cl6371.com'
 SITE_CODE = 'caoliu1024'
 LOGIN_URL = SITE_URL + '/login.php'
 THREAD_URL = SITE_URL + '/thread.php?fid={fid}&page={page}'
