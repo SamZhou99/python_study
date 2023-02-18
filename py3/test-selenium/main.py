@@ -8,7 +8,8 @@ POST_URL = 'http://127.0.0.1:3000/admin/article'
 # SITE_URL = 'https://www.caecf5ca04934df3.xyz'
 # SITE_URL = 'https://cl260d.com'
 # SITE_URL = 'https://cl34ce.com'
-SITE_URL = 'https://cl6371.com'
+# SITE_URL = 'https://cl6371.com'
+SITE_URL = 'https://cl4b4054caccfc49.xyz'
 SITE_CODE = 'caoliu1024'
 LOGIN_URL = SITE_URL + '/login.php'
 THREAD_URL = SITE_URL + '/thread.php?fid={fid}&page={page}'
@@ -49,10 +50,12 @@ thread_index = 2
 
 chrome_options = webdriver.ChromeOptions()
 # 无界面
-chrome_options.set_headless()
+# chrome_options.set_headless()
 # 不加载 IMG 和 JS, CSS
 chrome_options.add_experimental_option('prefs', {'profile.default_content_setting_values': {'images': 2, 'javascript': 2, 'permissions.default.stylesheet': 2}})
-driver = webdriver.Chrome(chrome_options=chrome_options)
+chrome_driver = './chromedriver.exe'
+driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=chrome_driver)
+# driver = webdriver.Chrome(chrome_options=chrome_options)
 driver.set_page_load_timeout(30)
 
 # driver.manage().timeouts().setScriptTimeout(3,TimeUnit.SECONDS);
