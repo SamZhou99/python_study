@@ -1,0 +1,11 @@
+import quopri
+
+str = """
+=C4=FA=D2=D1=D1=A1=D4=F1=B4=CB=B5=E7=D7=D3=D3=CA=BC=FE=B5=D8=D6=B7=D7=F7=CE=
+=AA=C4=FA=B5=C4=D0=C2 Apple ID=A1=A3=CE=AA=D1=E9=D6=A4=B4=CB=B5=E7=D7=D3=D3=
+=CA=BC=FE=B5=D8=D6=B7=CA=F4=D3=DA=C4=FA=A3=AC=C7=EB=D4=DA=B5=E7=D7=D3=D3=CA=
+=BC=FE=D1=E9=D6=A4=D2=B3=C3=E6=CA=E4=C8=EB=CF=C2=B7=BD=D1=E9=D6=A4=C2=EB=A3=
+=BA
+"""
+a = quopri.decodestring(str).decode("gb2312")
+print(a)

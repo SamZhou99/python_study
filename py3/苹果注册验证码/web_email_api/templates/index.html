@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>{{title}}</title>
+	<style>
+		li {
+			float: left;
+			margin: 1rem;
+			padding: 1rem;
+			list-style: none;
+			background-color: blueviolet;
+		}
+	</style>
+</head>
+
+<body>
+
+	<h4>{{title}}</h4>
+
+	<h4>随机数：{{r}}</h4>
+
+	<ul>
+		{% for index in indexs %}
+		<li> {{ index }} </li>
+		{% endfor %}
+	</ul>
+
+</body>
+
+</html>
