@@ -1,6 +1,6 @@
 import requests
 
-img_url = 'http://img.sejiazu.com:3027/Uploads/vod/2022-12-12/b11b971c-b39d-4469-9714-6f5d4630dc68.jpg'
+img_url = 'https://ai-bot.cn/wp-content/uploads/2023/12/seaart-ai-website.png'
 
 def DownloadImg(imgUrl, imgSaveName):
     res = requests.get(imgUrl, timeout=2)

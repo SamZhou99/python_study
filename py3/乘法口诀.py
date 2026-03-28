@@ -1,5 +1,5 @@
-def ChengFaKouJue():
-    max_num = 9
+def ChengFaKouJue(x1):
+    max_num = x1
     for i in range(1, max_num + 1):
         print()
         for j in range(1, i + 1):
@@ -129,5 +129,28 @@ def JiShuanTi():
     formatOutput(arr)
 
 
-# ChengFaKouJue()
-JiShuanTi()
+def FuToSu(fm, fz) -> float:
+    return round(fz / fm * 10000) / 10000
+
+
+def SuToFu(su: float) -> str:
+    if su > 1:
+        return "输入的数字要小于0"
+    a = su
+    b = 10
+    x, y = a, b
+    while b > 0:
+        a, b = b, a % b
+    x = int(x / a)
+    y = int(y / a)
+    return str(x) + "/" + str(y)
+
+
+def init():
+    ChengFaKouJue(10)
+    # JiShuanTi()
+    # print(FuToSu(5, 3))
+    # print(SuToFu(0.4))
+
+
+init()
