@@ -1,5 +1,5 @@
 # 列表
-list = ['a', 'b', 'c', 'd', 4, 5, 6, 7, 7]
+list = ["a", "b", "c", "d", 4, 5, 6, 7, 7]
 numbers = [2, 8, 4, 9, 0, 5, 6]
 
 # list[索引开始:索引结束:索引步长]
@@ -46,10 +46,16 @@ print(list.count(7))
 try:
     print(list.index(70))
 except Exception as identifier:
-    print('异常：列表中 没有找到 相应的数据')
+    print("异常：列表中 没有找到 相应的数据")
 
 # 乘法口诀
 for m1 in range(1, 10):
     for m2 in range(1, m1 + 1):
-        print("{}x{}={}".format(m2, m1, m1 * m2), end='\t')
+        print("{}x{}={}".format(m2, m1, m1 * m2), end="\t")
     print()
+
+
+# 任意长度的可迭代对象中分解元素
+record = ("dave", 18, "male", "13612341234", "13611112222")
+name, age, gender, *phone_num = record
+print(name, age, gender, phone_num)
