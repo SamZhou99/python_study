@@ -7,7 +7,7 @@ class Paddle:
         self.speed = 5
         self.x = 0
         self.y = 0
-        self.width = 100
+        self.width = 580
         self.canvas = canvas
         self.canvasWidth = canvas.winfo_width()
         self.id = canvas.create_rectangle(0, 0, self.width, 10, fill="#FF0000")

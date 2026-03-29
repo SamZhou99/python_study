@@ -9,7 +9,7 @@ class Ball:
     def __init__(self, canvas: tkinter.Canvas, paddle: Paddle, tk: tkinter) -> None:
         self.tk = tk
         self.paddle = paddle
-        self.speed = 1
+        self.speed = 2
         starts = [-3, -2, -1, 1, 1, 2, 3]
         random.shuffle(starts)
         self.x = starts[0]
@@ -41,9 +41,12 @@ class Ball:
             self.x = -self.speed
         # 碰到木板反弹
         if self.hit_paddle(pos):
+            if self.speed > 20:
+                self.speed = 20
             self.y = -self.speed
             # 速度加快，增加难度
             self.speed += 1
+            print("速度：", self.speed)
 
     def hit_paddle(self, pos):
         paddle_pos = self.canvas.coords(self.paddle.id)
