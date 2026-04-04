@@ -1,30 +1,33 @@
 import sqlite3
 import module_plistlib
+import time
+from ClassSqlite import ClassSqlite
+
+DBPath = "/Users/sam/Library/Messages/chat.db"
+SQLite = ClassSqlite(DBPath)
 
 
-def view_data(alldata):
+def view_data(alldata, field):
     for item in alldata:
-        res, err = module_plistlib.decodedPlist(item[0])
-        if err:
-            print("Error:", err)
-        else:
-            print(res)
+        # print("📊数据：：：", item[field])
+        res = module_plistlib.parseImessageText(item[field])
+        print("👹结果：", item["ROWID"], res)
 
 
 def init():
-    # 连接到SQLite数据库
-    db_path = "/Users/sam/Library/Messages/chat.db"
-    conn = sqlite3.connect(db_path)
-    cursor = conn.cursor()
-    # 查询BLOB数据
-    cursor.execute(
-        "SELECT properties FROM chat WHERE state=3 LIMIT ?;",
-        (10,),
+    print("----------------- chat")
+    sql = "SELECT ROWID, properties FROM chat WHERE state=3 LIMIT {};".format(10)
+    res = SQLite.select(sql)
+    view_data(res, "properties")
+
+    print("----------------- message")
+    sql = "SELECT ROWID, attributedBody FROM message ORDER BY ROWID DESC LIMIT {};".format(
+        900
     )
-    # blob_data = cursor.fetchone()[0]
-    view_data(cursor)
-    # 关闭连接
-    conn.close()
+    res = SQLite.select(sql)
+    view_data(res, "attributedBody")
+
+    SQLite.finish()
     print("执行完成")
 
 
